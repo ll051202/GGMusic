@@ -1,7 +1,9 @@
-package gl.com.ggmusic;
+package gl.com.ggmusic.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import gl.com.ggmusic.R;
 
 public class MainActivity extends AppCompatActivity {
 
