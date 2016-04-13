@@ -11,6 +11,7 @@
         android:background="@color/colorPrimary">
 
         <ImageView
+            android:id="@+id/menuImageView"
             style="@style/main_actionbar_image"
             android:src="@mipmap/actionbar_menu"/>
 
@@ -21,27 +22,26 @@
 
 
             <ImageView
+                android:id="@+id/discoverImageView"
                 style="@style/main_actionbar_image_center"
                 android:src="@mipmap/actionbar_discover_selected"/>
 
             <ImageView
+                android:id="@+id/musicImageView"
                 style="@style/main_actionbar_image_center"
                 android:src="@mipmap/actionbar_music_prs"/>
 
             <ImageView
+                android:id="@+id/friendsImageView"
                 style="@style/main_actionbar_image_center"
                 android:src="@mipmap/actionbar_friends_prs"/>
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/searchImageView"
             style="@style/main_actionbar_image"
             android:layout_alignParentRight="true"
             android:src="@mipmap/actionbar_search"/>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Activity"/>
 </LinearLayout>
