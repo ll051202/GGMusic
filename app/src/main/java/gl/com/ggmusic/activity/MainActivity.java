@@ -5,7 +5,6 @@ import android.graphics.PixelFormat;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -98,10 +97,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         list.add(new MainFriendsView(context));
         MainViewPagerAdapter adapter = new MainViewPagerAdapter(list);
         contentViewPager.setAdapter(adapter);
-        contentViewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return true;
+        contentViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+            public void onPageSelected(int position) {
+                showViewPager(position);
+            }
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
     }

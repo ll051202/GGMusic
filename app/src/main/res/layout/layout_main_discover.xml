@@ -4,11 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <gl.com.ggmusic.widget.HorizontalSideView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="discover"
-        android:textSize="40sp"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal"/>
+        android:id="@+id/sideView" />
 </LinearLayout>
