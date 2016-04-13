@@ -6,6 +6,23 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="main_actionbar_image">
+        <item name="android:padding">13dp</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+
+    <style name="main_actionbar_image_center">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/default_image_pressed</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
     </style>
 
 </resources>
