@@ -96,6 +96,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         if (bundle != null)
             intent.putExtras(bundle);
         startActivity(intent);
+
     }
 
     protected void startActivity(Class activityClass) {
