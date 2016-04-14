@@ -135,7 +135,7 @@ public class HorizontalSideView extends LinearLayout implements View.OnClickList
      *
      * @param position
      */
-    private void setDividerMargin(float position) {
+    public void setDividerMargin(float position) {
         if (divider == null)
             return;
         LayoutParams lp = (LayoutParams) divider.getLayoutParams();

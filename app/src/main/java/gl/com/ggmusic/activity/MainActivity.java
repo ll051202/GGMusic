@@ -17,7 +17,7 @@ import gl.com.ggmusic.R;
 import gl.com.ggmusic.activity.main.MainDiscoverView;
 import gl.com.ggmusic.activity.main.MainFriendsView;
 import gl.com.ggmusic.activity.main.MainMusicView;
-import gl.com.ggmusic.adapter.MainViewPagerAdapter;
+import gl.com.ggmusic.adapter.CommonUseViewPagerAdapter;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         list.add(new MainDiscoverView(context));
         list.add(new MainMusicView(context));
         list.add(new MainFriendsView(context));
-        MainViewPagerAdapter adapter = new MainViewPagerAdapter(list);
+        CommonUseViewPagerAdapter adapter = new CommonUseViewPagerAdapter(list);
         contentViewPager.setAdapter(adapter);
         contentViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

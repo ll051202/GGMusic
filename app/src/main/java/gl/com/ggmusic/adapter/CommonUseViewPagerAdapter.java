@@ -7,12 +7,13 @@ import android.view.ViewGroup;
 import java.util.List;
 
 /**
+ * 一个可通用的viewpagerAdapter
  * Created by guilinlin on 16/4/13.
  */
-public class MainViewPagerAdapter extends PagerAdapter {
+public class CommonUseViewPagerAdapter extends PagerAdapter {
     private List<View> list;
 
-    public MainViewPagerAdapter(List<View> list) {
+    public CommonUseViewPagerAdapter(List<View> list) {
         this.list = list;
     }
 
