@@ -2,7 +2,8 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    //本地文件夹中需要一个gradle.properties文件，在其中增加 BUILD_VERSION = 23.0.3
+    buildToolsVersion BUILD_VERSION
 
     defaultConfig {
         applicationId "gl.com.ggmusic"
