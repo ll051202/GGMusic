@@ -1,16 +1,13 @@
 package gl.com.ggmusic.activity;
 
 
-import android.graphics.PixelFormat;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +17,7 @@ import gl.com.ggmusic.activity.main.MainDiscoverView;
 import gl.com.ggmusic.activity.main.MainFriendsView;
 import gl.com.ggmusic.activity.main.MainMusicView;
 import gl.com.ggmusic.adapter.CommonUseViewPagerAdapter;
+import gl.com.ggmusic.widget.BottomMusicView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -31,6 +29,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView searchImageView;
     private android.support.v4.view.ViewPager contentViewPager;
     private View menuLayout;
+    private BottomMusicView bottomMusicView;
 
     private Animation inAnimation;
 
@@ -49,6 +48,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.menuImageView = (ImageView) findViewById(R.id.menuImageView);
 
         inAnimation = AnimationUtils.loadAnimation(context, R.anim.translate_left_to_right_400);
+        bottomMusicView = new BottomMusicView();
 
     }
 
@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         toolbar.setVisibility(View.GONE);
 
-        initBottomMusicView();
+        bottomMusicView.show(getApplication(),context);
 
         initViewPager();
 
@@ -85,8 +85,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.friendsImageView:
                 showViewPager(2);
+
+                EventBus.getDefault().post(BottomMusicView.GONE);
                 break;
             case R.id.searchImageView:
+                EventBus.getDefault().post(BottomMusicView.VISABLE);
                 break;
             default:
                 break;
@@ -117,29 +120,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         });
     }
 
-    /**
-     * 初始化底部音乐悬浮穿
-     */
-    private void initBottomMusicView() {
-        View musicView = LayoutInflater.from(context).inflate(R.layout.layout_bottom_music, null);
-        final TextView tv = (TextView) musicView.findViewById(R.id.musicNameTextView);
-        //TYPE_TOAST 是关键,这样就不需要悬浮窗权限了
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams(WindowManager.LayoutParams.TYPE_TOAST);
-        //禁止获得焦点，不然下面的界面无法接收到触摸点击事件  无法接收onBack
-        params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        params.format = PixelFormat.TRANSLUCENT;
-        params.gravity = Gravity.BOTTOM;
-
-        musicView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-        WindowManager windowManager = (WindowManager) getApplication().getSystemService(getApplication().WINDOW_SERVICE);
-        windowManager.addView(musicView, params);
-    }
 
     private void showViewPager(int position) {
         contentViewPager.setCurrentItem(position);
@@ -160,4 +140,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+        bottomMusicView.remove();
+
+    }
 }
