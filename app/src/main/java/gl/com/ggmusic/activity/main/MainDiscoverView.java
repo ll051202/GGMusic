@@ -53,6 +53,7 @@ public class MainDiscoverView extends LinearLayout {
     }
 
     private void setListener() {
+        //viewPager滑动时修改sideView的进度条
         contentViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 sideView.setDividerMargin(position+positionOffset);
@@ -63,5 +64,13 @@ public class MainDiscoverView extends LinearLayout {
             public void onPageScrollStateChanged(int state) {
             }
         });
+
+        sideView.setOnItemClickListener(new HorizontalSideView.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                contentViewPager.setCurrentItem(position);
+            }
+        });
+
     }
 }

@@ -42,6 +42,8 @@ public class HorizontalSideView extends LinearLayout implements View.OnClickList
     private View divider;
     private int dividerWidth = 0;
 
+    private OnItemClickListener onItemClickListener;
+
 
     public HorizontalSideView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -100,6 +102,8 @@ public class HorizontalSideView extends LinearLayout implements View.OnClickList
     public void onClick(View view) {
         int position = (int) view.getTag();
         setSelectedTextColor(position);
+        if (onItemClickListener != null)
+            onItemClickListener.onItemClick((Integer) view.getTag());
     }
 
     /**
@@ -141,5 +145,13 @@ public class HorizontalSideView extends LinearLayout implements View.OnClickList
         LayoutParams lp = (LayoutParams) divider.getLayoutParams();
         lp.leftMargin = (int) (dividerWidth * position);
         divider.setLayoutParams(lp);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener l) {
+        onItemClickListener = l;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 }
