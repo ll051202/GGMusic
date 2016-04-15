@@ -148,6 +148,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             musicImageView.setImageResource(R.mipmap.actionbar_music_prs);
             friendsImageView.setImageResource(R.mipmap.actionbar_friends_selected);
         }
+
     }
 
 
