@@ -10,3 +10,4 @@ gradle.properties
 .idea/vcs.xml
 .idea/inspectionProfiles
 .idea/dictionaries
+.idea/misc.xml
