@@ -1,55 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <!--头部标题-->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/menuImageView"
-            style="@style/main_actionbar_image"
-            android:src="@mipmap/actionbar_menu"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <!--头部标题-->
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_centerInParent="true">
-
-
-            <ImageView
-                android:id="@+id/discoverImageView"
-                style="@style/main_actionbar_image_center"
-                android:src="@mipmap/actionbar_discover_selected"/>
+            android:background="@color/colorPrimary">
 
             <ImageView
-                android:id="@+id/musicImageView"
-                style="@style/main_actionbar_image_center"
-                android:src="@mipmap/actionbar_music_prs"/>
+                android:id="@+id/menuImageView"
+                style="@style/main_actionbar_image"
+                android:src="@mipmap/actionbar_menu"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true">
+
+
+                <ImageView
+                    android:id="@+id/discoverImageView"
+                    style="@style/main_actionbar_image_center"
+                    android:src="@mipmap/actionbar_discover_selected"/>
+
+                <ImageView
+                    android:id="@+id/musicImageView"
+                    style="@style/main_actionbar_image_center"
+                    android:src="@mipmap/actionbar_music_prs"/>
+
+                <ImageView
+                    android:id="@+id/friendsImageView"
+                    style="@style/main_actionbar_image_center"
+                    android:src="@mipmap/actionbar_friends_prs"/>
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/friendsImageView"
-                style="@style/main_actionbar_image_center"
-                android:src="@mipmap/actionbar_friends_prs"/>
-        </LinearLayout>
+                android:id="@+id/searchImageView"
+                style="@style/main_actionbar_image"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/actionbar_search"/>
+        </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/searchImageView"
-            style="@style/main_actionbar_image"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/actionbar_search"/>
-    </RelativeLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/contentViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/contentViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
 
-    </android.support.v4.view.ViewPager>
+    </LinearLayout>
 
-</LinearLayout>
+    <View
+        android:id="@+id/menuLayout"
+        android:visibility="gone"
+        android:layout_width="300dp"
+        android:background="#FFF000"
+        android:layout_height="match_parent" />
+</FrameLayout>

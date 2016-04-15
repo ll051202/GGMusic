@@ -7,6 +7,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +30,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView friendsImageView;
     private ImageView searchImageView;
     private android.support.v4.view.ViewPager contentViewPager;
+    private View menuLayout;
+
+    private Animation inAnimation;
 
     public MainActivity() {
         setContentView(R.layout.activity_main);
@@ -35,13 +40,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     void init() {
-
+        this.menuLayout = findViewById(R.id.menuLayout);
         this.contentViewPager = (ViewPager) findViewById(R.id.contentViewPager);
         this.searchImageView = (ImageView) findViewById(R.id.searchImageView);
         this.friendsImageView = (ImageView) findViewById(R.id.friendsImageView);
         this.musicImageView = (ImageView) findViewById(R.id.musicImageView);
         this.discoverImageView = (ImageView) findViewById(R.id.discoverImageView);
         this.menuImageView = (ImageView) findViewById(R.id.menuImageView);
+
+        inAnimation = AnimationUtils.loadAnimation(context, R.anim.translate_left_to_right_400);
 
     }
 
@@ -70,9 +77,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.searchImageView:
-                startActivity(SettingActivity.class);
-                break;
             case R.id.discoverImageView:
                 showViewPager(0);
                 break;
@@ -81,6 +85,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.friendsImageView:
                 showViewPager(2);
+                break;
+            case R.id.searchImageView:
                 break;
             default:
                 break;
@@ -100,9 +106,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         contentViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
+
             public void onPageSelected(int position) {
                 showViewPager(position);
             }
+
             public void onPageScrollStateChanged(int state) {
 
             }
