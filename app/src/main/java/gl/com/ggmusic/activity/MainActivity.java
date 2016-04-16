@@ -1,7 +1,11 @@
 package gl.com.ggmusic.activity;
 
 
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
@@ -74,10 +78,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         Intent service = new Intent(context.getApplicationContext(), PlayMusicService.class);
         context.getApplicationContext().startService(service);
-
+        context.getApplicationContext().bindService(service,connection, Activity.BIND_AUTO_CREATE);
 
     }
 
+
+    ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
 
     @Override
     void initView() {
@@ -169,6 +185,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //程序结束时移除
         bottomMusicView.remove();
     }
 

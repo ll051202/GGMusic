@@ -9,9 +9,6 @@
         android:theme="@style/AppTheme">
 
         <service android:name=".service.PlayMusicService">
-            <intent-filter>
-                <action android:name="gl.com.ggmusic.service.PlayMusicService"/>
-            </intent-filter>
         </service>
 
         <activity android:name=".activity.MainActivity">

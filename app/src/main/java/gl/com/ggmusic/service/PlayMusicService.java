@@ -12,19 +12,17 @@ import gl.com.ggmusic.R;
 /**
  * Created by guilinlin on 16/4/16.
  */
-public class PlayMusicService extends Service {
+public class PlayMusicService extends Service implements MediaPlayer.OnCompletionListener {
 
-    public static final String ACTION_NAME = "gl.com.ggmusic.service.PlayMusicService";
     private MusicBinder musicBinder;
+    private MediaPlayer mediaPlayer;
 
     @Override
     public void onCreate() {
         super.onCreate();
         musicBinder = new MusicBinder();
         System.out.println("onCreate");
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.test);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
+        mediaPlayer = MediaPlayer.create(this, R.raw.test);
     }
 
 
@@ -39,6 +37,7 @@ public class PlayMusicService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         System.out.println("onStartCommand");
+        mediaPlayer.start();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -46,6 +45,11 @@ public class PlayMusicService extends Service {
     public void onDestroy() {
         System.out.println("onDestroy");
         super.onDestroy();
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mediaPlayer) {
+
     }
 
     public class MusicBinder extends Binder {
