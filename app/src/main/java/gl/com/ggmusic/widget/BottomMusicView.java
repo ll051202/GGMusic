@@ -17,15 +17,17 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import gl.com.ggmusic.R;
-import gl.com.ggmusic.util.MyUtil;
 
 /**
+ * 底部音乐播放的控件，一个很核心的类
  * Created by guilinlin on 16/4/15.
  */
 public class BottomMusicView {
 
     public static final int GONE = 1;
     public static final int VISABLE = 2;
+
+    private Context context;
 
     private View bottomMusicView;
     private Application application;
@@ -38,6 +40,7 @@ public class BottomMusicView {
      * 初始化底部音乐悬浮穿
      */
     public void show(Application application, final Context context) {
+        this.context = context;
         this.application = application;
         alphaInAnimation = AnimationUtils.loadAnimation(context, R.anim.alpha_0_1_300);
         alphaOutAnimation = AnimationUtils.loadAnimation(context, R.anim.alpha_1_0_300);
@@ -57,7 +60,6 @@ public class BottomMusicView {
         bottomMusicView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyUtil.T(context,"11");
             }
         });
         WindowManager windowManager = (WindowManager) application.getSystemService(Application.WINDOW_SERVICE);
@@ -98,6 +100,7 @@ public class BottomMusicView {
     public void remove() {
         WindowManager windowManager = (WindowManager) application.getSystemService(Application.WINDOW_SERVICE);
         windowManager.removeView(bottomMusicView);
+        EventBus.getDefault().unregister(this);
     }
 
 }

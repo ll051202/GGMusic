@@ -1,10 +1,9 @@
 package gl.com.ggmusic.activity;
 
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -17,21 +16,45 @@ import gl.com.ggmusic.activity.main.MainDiscoverView;
 import gl.com.ggmusic.activity.main.MainFriendsView;
 import gl.com.ggmusic.activity.main.MainMusicView;
 import gl.com.ggmusic.adapter.CommonUseViewPagerAdapter;
+import gl.com.ggmusic.service.PlayMusicService;
 import gl.com.ggmusic.widget.BottomMusicView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
+    /**
+     * 菜单图标
+     */
     private ImageView menuImageView;
+    /**
+     * 发现页图标
+     */
     private ImageView discoverImageView;
+    /**
+     * 我的音乐图标
+     */
     private ImageView musicImageView;
+    /**
+     * 朋友图标
+     */
     private ImageView friendsImageView;
+    /**
+     * 搜索图标
+     */
     private ImageView searchImageView;
+    /**
+     * 首页的ViewPager
+     */
     private android.support.v4.view.ViewPager contentViewPager;
+    /**
+     * 侧滑菜单
+     */
     private View menuLayout;
+    /**
+     * 底部音乐图标
+     */
     private BottomMusicView bottomMusicView;
 
-    private Animation inAnimation;
 
     public MainActivity() {
         setContentView(R.layout.activity_main);
@@ -47,8 +70,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.discoverImageView = (ImageView) findViewById(R.id.discoverImageView);
         this.menuImageView = (ImageView) findViewById(R.id.menuImageView);
 
-        inAnimation = AnimationUtils.loadAnimation(context, R.anim.translate_left_to_right_400);
         bottomMusicView = new BottomMusicView();
+
+        Intent service = new Intent(context.getApplicationContext(), PlayMusicService.class);
+        context.getApplicationContext().startService(service);
+
 
     }
 
@@ -143,8 +169,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
         bottomMusicView.remove();
-
     }
+
 }
