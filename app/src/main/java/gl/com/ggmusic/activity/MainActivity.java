@@ -2,6 +2,8 @@ package gl.com.ggmusic.activity;
 
 
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -24,7 +26,7 @@ import gl.com.ggmusic.widget.BottomMusicView;
  * 注意事项:
  * 1.构造方法中需调用setContentView()；
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, DrawerLayout.DrawerListener {
 
 
     /**
@@ -56,6 +58,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     private View menuLayout;
     /**
+     * 官方提供的侧滑菜单
+     */
+    private DrawerLayout drawerLayout;
+    /**
      * 底部音乐图标
      */
     private BottomMusicView bottomMusicView;
@@ -67,6 +73,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     void init() {
+        this.drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         this.menuLayout = findViewById(R.id.menuLayout);
         this.contentViewPager = (ViewPager) findViewById(R.id.contentViewPager);
         this.searchImageView = (ImageView) findViewById(R.id.searchImageView);
@@ -100,11 +107,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.musicImageView.setOnClickListener(this);
         this.discoverImageView.setOnClickListener(this);
         this.menuImageView.setOnClickListener(this);
+        this.drawerLayout.addDrawerListener(this );
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+
+            case R.id.menuImageView:
+                drawerLayout.openDrawer(Gravity.LEFT);
+                break;
             case R.id.discoverImageView:
                 showViewPager(0);
                 break;
@@ -174,4 +186,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         bottomMusicView.remove();
     }
 
+    @Override
+    public void onDrawerSlide(View drawerView, float slideOffset) {
+
+    }
+
+    @Override
+    public void onDrawerOpened(View drawerView) {
+        EventBus.getDefault().post(new BottomMusicEvent(BottomMusicEvent.GONE));
+    }
+
+    @Override
+    public void onDrawerClosed(View drawerView) {
+        EventBus.getDefault().post(new BottomMusicEvent(BottomMusicEvent.VISABLE));
+    }
+
+    @Override
+    public void onDrawerStateChanged(int newState) {
+
+    }
 }
