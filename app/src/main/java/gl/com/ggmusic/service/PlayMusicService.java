@@ -9,9 +9,6 @@ import android.support.annotation.Nullable;
 
 import gl.com.ggmusic.R;
 
-/**
- * Created by guilinlin on 16/4/16.
- */
 public class PlayMusicService extends Service implements MediaPlayer.OnCompletionListener {
 
     private MusicBinder musicBinder;
@@ -23,6 +20,7 @@ public class PlayMusicService extends Service implements MediaPlayer.OnCompletio
         musicBinder = new MusicBinder();
         System.out.println("onCreate");
         mediaPlayer = MediaPlayer.create(this, R.raw.test);
+        mediaPlayer.setLooping(true);
     }
 
 

@@ -22,7 +22,7 @@ public class MyUtil {
      * @param context
      * @param msg
      */
-    public static void T(Context context, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+    public static void T(Context context, Object msg) {
+        Toast.makeText(context, msg.toString(), Toast.LENGTH_LONG).show();
     }
 }

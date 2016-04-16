@@ -23,6 +23,12 @@ import gl.com.ggmusic.adapter.CommonUseViewPagerAdapter;
 import gl.com.ggmusic.service.PlayMusicService;
 import gl.com.ggmusic.widget.BottomMusicView;
 
+
+/**
+ * Created by guilinlin on 16/4/13.<p/>
+ * 注意事项:
+ * 1.构造方法中需调用setContentView()；
+ */
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
@@ -78,7 +84,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         Intent service = new Intent(context.getApplicationContext(), PlayMusicService.class);
         context.getApplicationContext().startService(service);
-        context.getApplicationContext().bindService(service,connection, Activity.BIND_AUTO_CREATE);
+        context.getApplicationContext().bindService(service, connection, Activity.BIND_AUTO_CREATE);
 
     }
 
@@ -100,7 +106,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         toolbar.setVisibility(View.GONE);
 
-        bottomMusicView.show(getApplication(),context);
+        bottomMusicView.show(getApplication(), context);
 
         initViewPager();
 

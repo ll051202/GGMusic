@@ -11,3 +11,4 @@ gradle.properties
 .idea/inspectionProfiles
 .idea/dictionaries
 .idea/misc.xml
+.idea/fileTemplates

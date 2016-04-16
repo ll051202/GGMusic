@@ -45,16 +45,18 @@
         android:gravity="center">
 
         <ImageView
+            android:id="@+id/listImageView"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:src="@mipmap/playbar_btn_playlist"/>
 
         <ImageView
+            android:id="@+id/playImageView"
             android:layout_width="55dp"
-            android:layout_height="match_parent"
-            android:src="@mipmap/playbar_btn_play"/>
+            android:layout_height="match_parent" />
 
         <ImageView
+            android:id="@+id/nextImageView"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:src="@mipmap/playbar_btn_next"/>
