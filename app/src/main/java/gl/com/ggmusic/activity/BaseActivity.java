@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewStub;
 
 import gl.com.ggmusic.R;
+import gl.com.ggmusic.util.MyUtil;
 
 /**
  * Created by guilinlin on 16/4/13.<p/>
@@ -108,7 +109,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         finish();
     }
 
-    protected void setNavigationOnClickListener(View.OnClickListener listener){
-        toolbar.setNavigationOnClickListener(listener);
+    protected void setNavigationOnClickListener(View.OnClickListener listener) {
+
+    }
+
+    protected void showToast(Object msg) {
+        MyUtil.t(context, msg);
     }
 }
